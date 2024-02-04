@@ -5,5 +5,5 @@
   "sourceRoot": "e2e/src",
   "targets": {},
   "tags": [],
-  "implicitDependencies": ["elastic-profiler"]
+  "implicitDependencies": ["elastic-profile"]
 }

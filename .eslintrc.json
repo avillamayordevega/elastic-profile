@@ -24,7 +24,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "elasticProfiler",
+            "prefix": "elasticProfile",
             "style": "camelCase"
           }
         ],
@@ -32,7 +32,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "elastic-profiler",
+            "prefix": "elastic-profile",
             "style": "kebab-case"
           }
         ]
