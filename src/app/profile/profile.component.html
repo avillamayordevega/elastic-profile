@@ -1,0 +1,10 @@
+@if (elastic.responseHasProfile()) {
+    <select style="width: 100%;">
+        @for (shard of getProfileShards(); track $index) {
+            <option>{{shard.id}}</option>
+        }
+    </select>
+    <div class="container">
+        <elastic-profiler-step [data]="getProfileSteps(0)" />
+    </div>
+}

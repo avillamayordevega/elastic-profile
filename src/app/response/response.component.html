@@ -1,0 +1,17 @@
+<div class="wrapper">
+
+@if (elastic.response) {
+    <!-- TODO style height
+    <div class="col1">
+        <p class="status status-{{elastic.responseStatus / 100}}">{{ elastic.responseStatusText }}</p>
+    </div>
+    -->
+    <div class="col3">
+        <button>Response</button>
+        <button>Profile</button>
+    </div>
+    <json-editor class="all-columns" [options]="editorOptions" [data]="elastic.response"></json-editor>
+    <elastic-profiler-profile class="all-columns" />
+}
+
+</div>

@@ -1,0 +1,14 @@
+<div class="wrapper">
+    <!-- Row # 1 -->
+    <select [disabled]="elastic.subscription !== null">
+        <option>GET</option>
+        <option>POST</option>
+        <option>PUT</option>
+        <option>DELETE</option>
+    </select>
+    <input [(ngModel)]="url" (keyup.enter)="onSend()" [disabled]="elastic.subscription !== null"/>
+    <button (click)="onSend()">{{elastic.subscription ? "Cancel" : "Send"}}</button>
+
+    <!-- Row # 2 -->
+    <json-editor #queryeditor [data]="query" [options]="editorOptions" class="all-columns"></json-editor>
+</div>

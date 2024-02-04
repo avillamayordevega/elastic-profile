@@ -1,0 +1,19 @@
+.wrapper
+    height: 100%
+    display: grid
+    grid-template-columns: auto 1fr auto
+    grid-template-rows: auto 1fr
+    grid-gap: 4px
+    padding: 4px
+    
+.all-columns
+    grid-column: 1 / 4
+.col3
+    grid-column: 3 / 4
+
+:host ::ng-deep json-editor,
+:host ::ng-deep json-editor .jsoneditor,
+:host ::ng-deep json-editor > div,
+:host ::ng-deep json-editor jsoneditor-outer
+    height: 100px
+    min-height: 100%
