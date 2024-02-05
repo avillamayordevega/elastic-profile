@@ -5,7 +5,7 @@ import { ElasticService } from '../elastic/elastic.service';
 import { JsonEditorComponent, JsonEditorOptions, NgJsonEditorModule } from 'ang-jsoneditor';
 
 @Component({
-  selector: 'elastic-profiler-query',
+  selector: 'elastic-profile-query',
   standalone: true,
   imports: [CommonModule, FormsModule, NgJsonEditorModule],
   templateUrl: './query.component.html',
@@ -28,6 +28,8 @@ export class QueryComponent {
     "profile": true
   };
 
+  protected authVisible = false;
+
   public editorOptions: JsonEditorOptions = new JsonEditorOptions();
 
   @ViewChild('queryeditor') queryeditor: JsonEditorComponent | null = null;
@@ -48,6 +50,10 @@ export class QueryComponent {
     } else {
       this.elastic.request(this.url, JSON.stringify(this.queryeditor?.get()));
     }
+  }
+
+  toggleAuthVisible() {
+    this.authVisible = !this.authVisible;
   }
 
 }

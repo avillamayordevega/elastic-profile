@@ -8,18 +8,18 @@ import { Subscription } from 'rxjs';
 
 export class ElasticService {
 
+  user : string | undefined = 'elastic';
+  pass : string | undefined = 'changeme';
+
   version = ''
   private versions = new Map<string, string>();
 
   subscription : Subscription | null = null;
-  response : any | null = null;
+  response : any;
   responseStatus = 200;
   responseStatusText = '';
 
   readonly health_url_regex = new RegExp('^((?:https?://)?[^/]+).*$');
-  readonly headers = new HttpHeaders({
-    'Content-Type': 'application/json'
-  });
 
   constructor(private http : HttpClient) {}
 
@@ -41,7 +41,7 @@ export class ElasticService {
 
   request(url : string, query : string) {
     this.response = null;
-    this.subscription = this.http.post<object>(url, query, { headers: this.headers }).subscribe({
+    this.subscription = this.http.post<object>(url, query, { headers: this.getHeaders() }).subscribe({
       next: (response) => {
         this.response = response;
         this.responseStatus = 200;
@@ -70,18 +70,14 @@ export class ElasticService {
     return this.response && 'profile' in this.response;
   }
 
-}
+  private getHeaders() : HttpHeaders {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    if (this.user && this.pass) {
+      headers = headers.set('Authorization', 'Basic ' + btoa(this.user + ':' + this.pass));
+    }
+    return headers;
+  }
 
-/*
-interface ElasticResponse {
-  profile ?: Profile;
 }
-
-interface Profile {
-  shards : Shard[];
-}
-
-interface Shard {
-  id : string;
-}
-*/

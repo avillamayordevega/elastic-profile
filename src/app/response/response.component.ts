@@ -5,7 +5,7 @@ import { JsonEditorOptions, NgJsonEditorModule } from 'ang-jsoneditor';
 import { ProfileComponent } from '../profile/profile.component';
 
 @Component({
-  selector: 'elastic-profiler-response',
+  selector: 'elastic-profile-response',
   standalone: true,
   imports: [CommonModule, NgJsonEditorModule, ProfileComponent],
   templateUrl: './response.component.html',

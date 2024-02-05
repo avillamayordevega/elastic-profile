@@ -20,6 +20,8 @@ export class ProfileComponent {
   }
 
   getProfileSteps(shardIdx : number) {
+    // TODO show other shards
+
     const shardData = this.elastic.response.profile.shards[shardIdx];
 
     const rootChildren : Something[] = [];

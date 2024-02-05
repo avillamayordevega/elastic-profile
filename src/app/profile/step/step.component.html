@@ -1,6 +1,6 @@
 <div class="container" [style.grid-template-columns]="getChildrenSizes()">
     @for (child of getChildren(); track $index) {
-        <elastic-profiler-step [data]="child" [parent]="this"/>
+        <elastic-profile-step [data]="child" [parent]="this"/>
     }
     <div class="step-label" [style.grid-column]="getLabelColumnSpan()" [title]="getDescription()">{{getLabel()}}</div>
 </div>

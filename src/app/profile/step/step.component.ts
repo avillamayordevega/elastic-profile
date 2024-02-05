@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Something } from '../something';
 
 @Component({
-  selector: 'elastic-profiler-step',
+  selector: 'elastic-profile-step',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './step.component.html',
