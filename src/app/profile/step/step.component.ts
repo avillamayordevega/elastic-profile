@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Something } from '../something';
+import { ProfileData } from '../model';
 
 @Component({
   selector: 'elastic-profile-step',
@@ -11,7 +11,7 @@ import { Something } from '../something';
 })
 export class StepComponent {
   @Input() parent : StepComponent | undefined;
-  @Input() data : Something | undefined;
+  @Input() data : ProfileData | undefined;
 
   getLabel() {
     return this.data?.name ?? '?';

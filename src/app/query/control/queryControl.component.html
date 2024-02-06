@@ -1,0 +1,13 @@
+<div class="query-control-container">
+    <select [disabled]="elastic.subscription !== null">
+        <option>GET</option>
+        <option>POST</option>
+        <option>PUT</option>
+        <option>DELETE</option>
+    </select>
+    <input [(ngModel)]="elastic.url" (keyup.enter)="elastic.onSend()" [disabled]="elastic.subscription !== null"/>
+    <!--
+    <button (click)="toggleAuthVisible()">{{elastic.user && elastic.pass ? "Basic Auth" : "No Auth"}}</button>
+    -->
+    <button (click)="elastic.onSend()">{{elastic.subscription ? "Cancel" : "Send"}}</button>
+</div>

@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ElasticService } from '../elastic/elastic.service';
 import { StepComponent } from './step/step.component';
-import { Something } from './something';
+import { ProfileData } from './model';
 
 @Component({
-  selector: 'elastic-profiler-profile',
+  selector: 'elastic-profile-profile',
   standalone: true,
   imports: [CommonModule, StepComponent],
   templateUrl: './profile.component.html',
@@ -24,7 +24,7 @@ export class ProfileComponent {
 
     const shardData = this.elastic.response.profile.shards[shardIdx];
 
-    const rootChildren : Something[] = [];
+    const rootChildren : ProfileData[] = [];
     this.addSearches(shardData, rootChildren);
     this.addAggregations(shardData, rootChildren);
     this.addFetch(shardData, rootChildren);
@@ -36,14 +36,14 @@ export class ProfileComponent {
     };
   }
 
-  private addSearches(shardData : any, rootChildren : Something[]) {
+  private addSearches(shardData : any, rootChildren : ProfileData[]) {
     if (!('searches' in shardData)) {
       return;
     }
 
     for (let i = 0; i < shardData.searches.length; ++i) {
       const search = shardData.searches[i];
-      const children : Something[] = [];
+      const children : ProfileData[] = [];
 
       // query
       const queryChildren = this.getChildren(search.query);
@@ -76,8 +76,8 @@ export class ProfileComponent {
     }
   }
 
-  private getChildren(obj : any) : Something[] {
-    const children : Something[] = [];
+  private getChildren(obj : any) : ProfileData[] {
+    const children : ProfileData[] = [];
     if (Array.isArray(obj)) {
       obj.forEach(child => {
         children.push({
@@ -92,7 +92,7 @@ export class ProfileComponent {
     return children;
   }
 
-  private addAggregations(shardData : any, rootChildren : Something[]) {
+  private addAggregations(shardData : any, rootChildren : ProfileData[]) {
     if (!('aggregations' in shardData)) {
       return;
     }
@@ -105,7 +105,7 @@ export class ProfileComponent {
     });
   }
 
-  private addFetch(shardData : any, rootChildren : Something[]) {
+  private addFetch(shardData : any, rootChildren : ProfileData[]) {
     if (!('fetch' in shardData)) {
       return;
     }
@@ -118,7 +118,7 @@ export class ProfileComponent {
     });
   }
 
-  private getTotalChildrenTime(children : Something[]) {
+  private getTotalChildrenTime(children : ProfileData[]) {
     let sum = 0;
     children.forEach(child => sum += child.time);
     return sum;

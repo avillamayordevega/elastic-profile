@@ -8,11 +8,20 @@ import { Subscription } from 'rxjs';
 
 export class ElasticService {
 
+  url : string | undefined = 'http://localhost:9200/test_index/_search';
   user : string | undefined = 'elastic';
   pass : string | undefined = 'changeme';
 
   version = ''
   private versions = new Map<string, string>();
+
+  query : any = {
+    query: {
+      match_all: {}
+    },
+    profile: true
+  };
+  queryEditor : any;
 
   subscription : Subscription | null = null;
   response : any;
@@ -39,7 +48,15 @@ export class ElasticService {
     }
   }
 
-  request(url : string, query : string) {
+  onSend() {
+    if (this.subscription) {
+      this.cancelRequest();
+    } else if (this.url) {
+      this.sendRequest(this.url, JSON.stringify(this.queryEditor.get()));
+    }
+  }
+
+  private sendRequest(url : string, query : string) {
     this.response = null;
     this.subscription = this.http.post<object>(url, query, { headers: this.getHeaders() }).subscribe({
       next: (response) => {
@@ -57,7 +74,7 @@ export class ElasticService {
     });
   }
 
-  cancelRequest() {
+  private cancelRequest() {
     if (!this.subscription) {
       return;
     }
@@ -72,7 +89,8 @@ export class ElasticService {
 
   private getHeaders() : HttpHeaders {
     let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     });
     if (this.user && this.pass) {
       headers = headers.set('Authorization', 'Basic ' + btoa(this.user + ':' + this.pass));

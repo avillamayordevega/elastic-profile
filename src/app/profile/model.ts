@@ -1,7 +1,7 @@
-export interface Something {
+export interface ProfileData {
   name : string;
   time : number;
-  children : Something[];
+  children : ProfileData[];
   breakdown ?: Breakdown;
 }
 

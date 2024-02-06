@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { QueryComponent } from './query/query.component';
-import { ResponseComponent } from './response/response.component';
+import { QueryControlComponent } from './query/control/queryControl.component';
+import { QueryBodyComponent } from './query/body/queryBody.component';
+import { QueryResponseComponent } from 'src/app/query/response/queryResponse.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @Component({
-  selector: 'elastic-profiler-root',
+  selector: 'elastic-profile-root',
   standalone: true,
-  imports: [RouterOutlet, QueryComponent, ResponseComponent],
+  imports: [
+    RouterOutlet,
+    QueryControlComponent,
+    QueryBodyComponent,
+    QueryResponseComponent,
+    ProfileComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
 })
