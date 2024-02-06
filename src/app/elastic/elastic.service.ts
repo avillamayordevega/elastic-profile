@@ -91,7 +91,7 @@ export class ElasticService {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Credentials': 'true',
-      'Access-Control-Allow-Headers': 'origin, content-type, accept, authorization',
+      'Access-Control-Allow-Headers': 'origin, content-type, accept, authorization, x-csrf-token',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, DELETE',
       'Access-Control-Allow-Origin': '*',
     });
