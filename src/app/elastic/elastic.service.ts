@@ -90,7 +90,8 @@ export class ElasticService {
   private getHeaders() : HttpHeaders {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS, PUT, DELETE'
     });
     if (this.user && this.pass) {
       headers = headers.set('Authorization', 'Basic ' + btoa(this.user + ':' + this.pass));
